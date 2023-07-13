@@ -56,8 +56,13 @@ public class  Usuario {
         return ubicacion;
     }
 
-    public void setUbicacion(Integer ubicacion) {
-        this.ubicacion = ubicacion;
+    public void setUbicacion(Integer ubicacion) throws Exception {
+        try{
+            this.validacion.validarUbicacion(ubicacion); //si las validaciones son ok
+            this.ubicacion=ubicacion;
+        }catch (Exception error){
+            System.out.println(error.getMessage());
+        }
     }
 
     public String getCorreoElectronico() {
@@ -65,6 +70,11 @@ public class  Usuario {
     }
 
     public void setCorreoElectronico(String correo) {
-        this.correoElectronico = correo;
+        try{
+            this.validacion.validarCorreo(correoElectronico);
+            this.correoElectronico=correoElectronico;
+        }catch (Exception error){
+            System.out.println(error.getMessage());
+        }
     }
 }
