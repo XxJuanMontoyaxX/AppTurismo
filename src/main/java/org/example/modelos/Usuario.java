@@ -71,10 +71,22 @@ public class  Usuario {
 
     public void setCorreoElectronico(String correo) {
         try{
-            this.validacion.validarCorreo(correoElectronico);
-            this.correoElectronico=correoElectronico;
+            this.validacion.validarCorreo(correo);
+            this.correoElectronico=correo;
         }catch (Exception error){
             System.out.println(error.getMessage());
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "id=" + id +
+                ", nombres='" + nombres + '\'' +
+                ", documento='" + documento + '\'' +
+                ", ubicacion=" + ubicacion +
+                ", correoElectronico='" + correoElectronico + '\'' +
+                ", validacion=" + validacion +
+                '}';
     }
 }

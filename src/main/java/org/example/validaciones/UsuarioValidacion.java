@@ -13,7 +13,7 @@ public class UsuarioValidacion {
     }
     //metodos ordinarios para validar datos
     public Boolean validarNombres(String nombres)throws Exception{
-    String expresionRegular="^[A-Za-z]+$";
+    String expresionRegular="^[A-Za-z ]+$";
     if (!util.buscarCoincidencia(expresionRegular,nombres)){
         throw new Exception("Señor usuario su nombre solo puede tener letras");
     }else if (nombres.length()<10){
@@ -24,7 +24,7 @@ public class UsuarioValidacion {
     }
 
     public  Boolean validarCorreo(String correoElectronico)throws Exception{
-        String expresionRegular="^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+        String expresionRegular="^^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
         if (!util.buscarCoincidencia(expresionRegular,correoElectronico)){
             throw new Exception("Señor usuario el correo ingresado no es valido");
         }else {
