@@ -56,7 +56,7 @@ public class  Usuario {
         return ubicacion;
     }
 
-    public void setUbicacion(Integer ubicacion) throws Exception {
+    public void setUbicacion(Integer ubicacion) {
         try{
             this.validacion.validarUbicacion(ubicacion); //si las validaciones son ok
             this.ubicacion=ubicacion;

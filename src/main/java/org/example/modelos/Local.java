@@ -1,11 +1,15 @@
 package org.example.modelos;
 
+import org.example.validaciones.LocalValidacion;
+
 public class Local {
     private Integer id;
     private String nit;
     private String nombre;
     private Integer ubicacion;
     private String descripcion;
+    private LocalValidacion validacion=new LocalValidacion();
+
 
     public Local() {
     }
@@ -31,15 +35,26 @@ public class Local {
     }
 
     public void setNit(String nit) {
-        this.nit = nit;
+        try{
+            this.validacion.ValidarNit(nit);
+            this.nit=nit;
+        }catch (Exception error){
+            System.out.println(error.getMessage());
+        }
     }
+
 
     public String getNombre() {
         return nombre;
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        try{
+            this.validacion.ValidarNombre(nombre);
+            this.nombre=nombre;
+        }catch (Exception error){
+            System.out.println(error.getMessage());
+        }
     }
 
     public Integer getUbicacion() {

@@ -1,5 +1,6 @@
 package org.example.validaciones;
 
+import org.example.utilidades.Mensajes;
 import org.example.utilidades.Util;
 
 import java.util.regex.Matcher;
@@ -15,9 +16,9 @@ public class UsuarioValidacion {
     public Boolean validarNombres(String nombres)throws Exception{
     String expresionRegular="^[A-Za-z ]+$";
     if (!util.buscarCoincidencia(expresionRegular,nombres)){
-        throw new Exception("Señor usuario su nombre solo puede tener letras");
+        throw new Exception(Mensajes.NOMBRE_SOLO_LETRAS.getMensajes());
     }else if (nombres.length()<10){
-        throw new Exception("Señor usuario revise la cantidad de caracteres, es muy pequeña");
+        throw new Exception(Mensajes.NOMBRE_MUY_CORTO.getMensajes());
     }else {
         return true;
         }
@@ -26,7 +27,7 @@ public class UsuarioValidacion {
     public  Boolean validarCorreo(String correoElectronico)throws Exception{
         String expresionRegular="^^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
         if (!util.buscarCoincidencia(expresionRegular,correoElectronico)){
-            throw new Exception("Señor usuario el correo ingresado no es valido");
+            throw new Exception(Mensajes.CORREO_INVALIDO.getMensajes());
         }else {
             return  true;
         }
@@ -36,7 +37,7 @@ public class UsuarioValidacion {
         if (ubicacion.equals(1)||ubicacion.equals(2)||ubicacion.equals(3)||ubicacion.equals(4)){
             return  true;
         }else{
-            throw new Exception("La zona ingresada no es valida");
+            throw new Exception(Mensajes.ZONA_INVALIDA.getMensajes());
         }
     }
 
