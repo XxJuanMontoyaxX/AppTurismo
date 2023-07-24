@@ -13,8 +13,6 @@ public class LocalValidacion {
             throw new Exception(Mensajes.NIT_SOLO_NUMEROS.getMensajes());
         } else if (nit.length()<10) {
             throw new Exception(Mensajes.NIT_CANTIDAD.getMensajes());
-        } else if (nit.length()>10) {
-            throw new Exception(Mensajes.NIT_CANTIDAD.getMensajes());
         }else {
             return true;
         }

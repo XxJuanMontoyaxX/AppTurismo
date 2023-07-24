@@ -1,6 +1,9 @@
 package org.example.modelos;
 
+import org.example.validaciones.OfertaValidacion;
+
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Oferta {
     private Integer id;
@@ -10,6 +13,8 @@ public class Oferta {
     private LocalDate fechaFin;
     private Double costoPersona;
     private Integer idLocal;
+    private OfertaValidacion ValidarFormatoFechas= new OfertaValidacion();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public Oferta() {
     }
@@ -52,16 +57,27 @@ public class Oferta {
         return fechaInicio;
     }
 
-    public void setFechaInicio(LocalDate fechaInicio) {
-        this.fechaInicio = fechaInicio;
+    public void setFechaInicio(String fechaInicio) {
+     try{
+         this.ValidarFormatoFechas.ValidarFechaInicio(fechaInicio);
+         this. fechaInicio=LocalDate.parse(fechaInicio,formatter);
+     } catch (Exception error) {
+         System.out.println(error.getMessage());
+     }
     }
 
     public LocalDate getFechaFin() {
         return fechaFin;
     }
 
-    public void setFechaFin(LocalDate fechaFin) {
-        this.fechaFin = fechaFin;
+    public void setFechaFin(String fechaFin) {
+        try{
+            this.ValidarFormatoFechas.ValidarFechaInicio(fechaFin);
+            this.ValidarFormatoFechas.ValidarFechas(this.fechaInicio,LocalDate.parse(fechaFin,formatter));
+            this. fechaInicio=LocalDate.parse(fechaFin,formatter);
+        } catch (Exception error) {
+            System.out.println(error.getMessage());
+        }
     }
 
     public Double getCostoPersona() {
