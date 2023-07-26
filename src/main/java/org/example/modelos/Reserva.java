@@ -1,13 +1,20 @@
 package org.example.modelos;
 
+import org.example.validaciones.ReservaValidacion;
+
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Reserva {
+    private Integer numeroPersonas;
     private Integer id;
     private Integer idUsuario;
     private Integer idOferta;
     private Double costoFinal;
     private LocalDate fechaReserva;
+    private ReservaValidacion validacion=new ReservaValidacion();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
 
     public Reserva() {
     }
@@ -56,7 +63,40 @@ public class Reserva {
         return fechaReserva;
     }
 
-    public void setFechaReserva(LocalDate fechaReserva) {
-        this.fechaReserva = fechaReserva;
+    public void setFechaReserva(String fechaReserva) {
+        try{
+            this.validacion.ValidarFormato(fechaReserva);
+            this. fechaReserva=LocalDate.parse(fechaReserva,formatter);
+        } catch (Exception error) {
+            System.out.println(error.getMessage());
+        }
+    }
+
+    public Integer getNumeroPersonas() {
+        return numeroPersonas;
+    }
+
+    public void setNumeroPersonas(Integer numeroPersonas) {
+        try{
+            this.validacion.ValidarPersonas(numeroPersonas);
+            this.numeroPersonas=numeroPersonas;
+        }catch (Exception error){
+            System.out.println(error.getMessage());
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Reserva{" +
+                "numeroPersonas=" + numeroPersonas +
+                ", id=" + id +
+                ", idUsuario=" + idUsuario +
+                ", idOferta=" + idOferta +
+                ", costoFinal=" + costoFinal +
+                ", fechaReserva=" + fechaReserva +
+                ", validacion=" + validacion +
+                ", formatter=" + formatter +
+                '}';
     }
 }
+

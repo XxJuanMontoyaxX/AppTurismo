@@ -10,10 +10,8 @@ public class OfertaValidacion {
     public OfertaValidacion(){
     }
     public boolean ValidarTitulo(String titulo) throws Exception{
-        String expresionRegular="^[A-Za-z ]+$";
+        String expresionRegular="^.{1,20}$";
         if (!utilObjetoUtil.buscarCoincidencia(expresionRegular,titulo)){
-            throw new Exception(Mensajes.NOMBRE_SOLO_LETRAS.getMensajes());
-        } else if(titulo.length()<20){
             throw new Exception(Mensajes.TITULO_MUY_LARGO.getMensajes());
         } else{
             return true;
@@ -22,7 +20,7 @@ public class OfertaValidacion {
     public Boolean ValidarFechaInicio(String fechaInicio) throws Exception{
         String expresionRegular="^(0[1-9]|[1-2][0-9]|3[0-1])/(0[1-9]|1[0-2])/([1-9][0-9]{3})$";
     if (!utilObjetoUtil.buscarCoincidencia(expresionRegular,fechaInicio)){
-        throw new Exception("Señor usuario el formato digitado no es el correcto, es dd/MM/yyyy");
+        throw new Exception(Mensajes.FORMATO_FECHAS.getMensajes());
     }else {
         return true;
             }
@@ -31,17 +29,24 @@ public class OfertaValidacion {
     public Boolean ValidarFechaFin(String fechaFin) throws Exception{
         String expresionRegular="^(0[1-9]|[1-2][0-9]|3[0-1])/(0[1-9]|1[0-2])/([1-9][0-9]{3})$";
         if (!utilObjetoUtil.buscarCoincidencia(expresionRegular,fechaFin)){
-            throw new Exception("Señor usuario el formato digitado no es el correcto, es dd/MM/yyyy");
+            throw new Exception(Mensajes.FORMATO_FECHAS.getMensajes());
         }else {
             return true;
         }
     }
     public Boolean ValidarFechas(LocalDate fechaInicio, LocalDate fechaFinal) throws Exception{
         if (fechaInicio.isAfter(fechaFinal)){
-            throw new Exception("La fecha de inicio no puede ser mayor a la fecha final");
+            throw new Exception(Mensajes.FECHA_FINAL.getMensajes());
         }else{
             return true;
         }
     }
 
+    public Boolean ValidarCosto(Double costoPersona) throws Exception{
+        if (costoPersona<0){
+            throw new Exception(Mensajes.COSTO_PERSONA.getMensajes());
+        } else {
+            return true;
+        }
+    }
 }

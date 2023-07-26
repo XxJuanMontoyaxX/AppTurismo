@@ -72,4 +72,17 @@ public class Local {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+    @Override
+    public String toString() {
+        return "Local{" +
+                "id=" + id +
+                ", nit='" + nit + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", ubicacion=" + ubicacion +
+                ", descripcion='" + descripcion + '\'' +
+                ", validacion=" + validacion +
+                '}';
+    }
 }
+

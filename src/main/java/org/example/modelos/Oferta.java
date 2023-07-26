@@ -13,7 +13,7 @@ public class Oferta {
     private LocalDate fechaFin;
     private Double costoPersona;
     private Integer idLocal;
-    private OfertaValidacion ValidarFormatoFechas= new OfertaValidacion();
+    private OfertaValidacion Validacion= new OfertaValidacion();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public Oferta() {
@@ -42,7 +42,12 @@ public class Oferta {
     }
 
     public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    try {
+        this.Validacion.ValidarTitulo(titulo);
+        this.titulo=titulo;
+    }catch (Exception error){
+        System.out.println(error.getMessage());
+    }
     }
 
     public String getDescripcion() {
@@ -59,7 +64,7 @@ public class Oferta {
 
     public void setFechaInicio(String fechaInicio) {
      try{
-         this.ValidarFormatoFechas.ValidarFechaInicio(fechaInicio);
+         this.Validacion.ValidarFechaInicio(fechaInicio);
          this. fechaInicio=LocalDate.parse(fechaInicio,formatter);
      } catch (Exception error) {
          System.out.println(error.getMessage());
@@ -72,8 +77,8 @@ public class Oferta {
 
     public void setFechaFin(String fechaFin) {
         try{
-            this.ValidarFormatoFechas.ValidarFechaInicio(fechaFin);
-            this.ValidarFormatoFechas.ValidarFechas(this.fechaInicio,LocalDate.parse(fechaFin,formatter));
+            this.Validacion.ValidarFechaInicio(fechaFin);
+            this.Validacion.ValidarFechas(this.fechaInicio,LocalDate.parse(fechaFin,formatter));
             this. fechaInicio=LocalDate.parse(fechaFin,formatter);
         } catch (Exception error) {
             System.out.println(error.getMessage());
@@ -85,7 +90,12 @@ public class Oferta {
     }
 
     public void setCostoPersona(Double costoPersona) {
-        this.costoPersona = costoPersona;
+        try {
+            this.Validacion.ValidarCosto(costoPersona);
+            this.costoPersona=costoPersona;
+        }catch (Exception error){
+            System.out.println(error.getMessage());
+        }
     }
 
     public Integer getIdLocal() {
@@ -94,5 +104,20 @@ public class Oferta {
 
     public void setIdLocal(Integer idLocal) {
         this.idLocal = idLocal;
+    }
+
+    @Override
+    public String toString() {
+        return "Oferta{" +
+                "id=" + id +
+                ", titulo='" + titulo + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", fechaInicio=" + fechaInicio +
+                ", fechaFin=" + fechaFin +
+                ", costoPersona=" + costoPersona +
+                ", idLocal=" + idLocal +
+                ", Validacion=" + Validacion +
+                ", formatter=" + formatter +
+                '}';
     }
 }
