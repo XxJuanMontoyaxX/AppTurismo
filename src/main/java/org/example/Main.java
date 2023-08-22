@@ -8,7 +8,7 @@ import org.example.modelos.Usuario;
 import java.util.Locale;
 import java.util.Scanner;
 
-import static com.sun.tools.javac.resources.CompilerProperties.Fragments.Local;
+/*import static com.sun.tools.javac.resources.CompilerProperties.Fragments.Local;*/
 
 public class Main {
     public static void main(String[] args) {

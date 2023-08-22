@@ -4,10 +4,10 @@ import org.example.utilidades.Mensajes;
 import org.example.utilidades.Util;
 
 public class LocalValidacion {
-    protected Util util=new Util();
+    protected static Util util=new Util();
     public LocalValidacion(){
     }
-    public Boolean ValidarNit(String nit)throws Exception{
+    public static Boolean ValidarNit(String nit)throws Exception{
         String expresionRegular="^\\d{10}$";
         if (!util.buscarCoincidencia(expresionRegular,nit)){
             throw new Exception(Mensajes.NIT_SOLO_NUMEROS.getMensajes());
